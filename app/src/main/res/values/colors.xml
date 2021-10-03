@@ -17,6 +17,8 @@
     <color name="hover_blue">#2C618A</color>
     <color name="green">#4FC56D</color>
     <color name="red">#F44336</color>
+    <color name="light_orange">#EFE0C7</color>
+    <color name="light_orange2">#DACEBA</color>
     <color name="gradient_start">#34DDDD</color>
     <color name="gradient_end">#65b7ee</color>
 </resources>
