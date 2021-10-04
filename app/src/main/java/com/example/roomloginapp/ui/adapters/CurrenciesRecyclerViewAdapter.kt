@@ -1,7 +1,6 @@
 package com.example.roomloginapp.ui.adapters
 
 import android.annotation.SuppressLint
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +36,7 @@ class CurrenciesRecyclerViewAdapter(private val items: Array<Item>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_card, parent, false)
+            .inflate(R.layout.currency_card_layout, parent, false)
 
         return ViewHolder(view)
     }
@@ -55,6 +54,7 @@ class CurrenciesRecyclerViewAdapter(private val items: Array<Item>) :
         } else {
             holder.infoTextView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_up, 0)
             holder.infoTextView.text = "+${items[position].info}"
+            holder.infoTextView.setTextColor(holder.itemView.context.resources.getColor(R.color.green))
         }
 
         Glide

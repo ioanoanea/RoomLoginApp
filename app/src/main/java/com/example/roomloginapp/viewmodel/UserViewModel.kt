@@ -25,9 +25,7 @@ class UserViewModel @Inject constructor(
 
     init {
         // Get user data
-        viewModelScope.launch {
-            user = userRepository.fetchUser().asLiveData()
-        }
+        fetchUser()
     }
 
     private fun fetchUser() {

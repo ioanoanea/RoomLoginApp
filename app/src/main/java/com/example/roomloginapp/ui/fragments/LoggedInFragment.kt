@@ -13,9 +13,12 @@ import androidx.fragment.app.activityViewModels
 import com.example.roomloginapp.R
 import com.example.roomloginapp.ui.adapters.MainViewPagerAdapter
 import com.example.roomloginapp.viewmodel.UserViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.viewPager
+import kotlinx.android.synthetic.main.fragment_logged_in.*
 
 class LoggedInFragment : Fragment() {
 
@@ -35,34 +38,19 @@ class LoggedInFragment : Fragment() {
 
         viewPager.adapter = MainViewPagerAdapter(context as FragmentActivity)
 
-        // View pager and tab layout
-        TabLayoutMediator(tabLayout, viewPager) { _, _ ->
-        }.attach()
-
-        // Set tabLayout tab icons
-        tabLayout.getTabAt(0)!!.setIcon(R.drawable.ic_home)
-        tabLayout.getTabAt(1)!!.setIcon(R.drawable.ic_notifications)
-
-        // TabLayout on tab selected listener
-        tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
-            @RequiresApi(Build.VERSION_CODES.M)
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                tab?.icon?.setTint(resources.getColor(R.color.blue))
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.item_1 -> {
+                    viewPager.currentItem = 0
+                    true
+                }
+                R.id.item_2 -> {
+                    viewPager.currentItem = 1
+                    true
+                }
+                else -> false
             }
-
-            @RequiresApi(Build.VERSION_CODES.M)
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-                tab?.icon?.setTint(resources.getColor(R.color.dark_grey))
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                tab?.icon?.setTint(resources.getColor(R.color.blue))
-            }
-
-        })
-
-        // select home tab
-        tabLayout.getTabAt(0)!!.select()
+        }
 
         viewPager.isUserInputEnabled = false
     }
